@@ -6,8 +6,9 @@ const Product = ({item})=>{
     const { name, price , imageUrl} = item;
     return (
         <div className="product">
-            <div className="product__img">q
+            <div className="product__img">
                 <img src={imageUrl} alt="" />
+                <button className="btn btn--white add-to-cart">Add to Cart</button>
             </div>
             <div className="product__infor">
                 <p className="product__infor--name effect-hover">{name}</p>

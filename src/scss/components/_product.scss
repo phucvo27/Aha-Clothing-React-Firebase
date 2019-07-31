@@ -4,6 +4,7 @@
         margin-bottom: 2rem;
         img{
             width: 100%;
+            height: 40rem;
         }
         .out__stock{
             position: absolute;
@@ -30,6 +31,22 @@
             font-weight: 400;
             text-transform: uppercase;
         }
+
+        .add-to-cart{
+            width: 15rem;
+            border: none;
+            position: absolute;
+            top: 50%;
+            left: 70%;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            transition: all .2s;
+        }
+        &:hover .add-to-cart{
+            opacity: 1;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     }
 
     &__infor{
@@ -39,6 +56,7 @@
         &--name{
             font-weight: normal;
             transition: all .2s;
+            font-size: 1.8rem;
             cursor: pointer;
         }
         &--price{

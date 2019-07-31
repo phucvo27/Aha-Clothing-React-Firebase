@@ -264,7 +264,7 @@ class Homepage extends React.Component{
         if(collections.length > 0){
             return collections.map((collection, index)=>{
                 return (
-                    <ProductList items={collection.items} key={index} title={collection.title} />
+                    <ProductList isAll={false} items={collection.items} key={index} title={collection.title} />
                 )
             })
         }else{
@@ -280,7 +280,7 @@ class Homepage extends React.Component{
                 <Navbar />
                 <Slider />
 
-                {}
+                {this.renderSectionHelper()}
             </>
         )
     }
