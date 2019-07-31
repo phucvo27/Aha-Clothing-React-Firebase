@@ -1,0 +1,60 @@
+.product{
+    &__img{
+        position: relative;
+        margin-bottom: 2rem;
+        img{
+            width: 100%;
+        }
+        .out__stock{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            padding: 1rem 0;
+            text-align: center;
+            background-color: $color-white;
+            color: $color-text;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+        }
+        .on__sale{
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: inline-block;
+            padding: .4rem 1rem;
+            background-color: $color-primary;
+            color: $color-white;
+            font-size: 1.2rem;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+    }
+
+    &__infor{
+        font-size: 1.6rem;
+        color: $color-text;
+        text-align: center;
+        &--name{
+            font-weight: normal;
+            transition: all .2s;
+            cursor: pointer;
+        }
+        &--price{
+            font-weight: bold;
+            transition: all .2s;
+            cursor: pointer;
+            .old-price{
+                display: inline-block;
+                text-decoration: line-through;
+                color: $color-grey-2;
+                margin-right: 1rem;
+                font-size: 1.4rem;
+            }
+        }
+        p:hover{
+            color: $color-primary;
+        }
+    }
+}
