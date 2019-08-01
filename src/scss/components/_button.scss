@@ -14,14 +14,25 @@
     &:hover{
         color: $color-primary;
         transform: translateY(-1rem);
-        box-shadow: 0rem 2rem 6rem rgba(0,0,0,.3);
+        box-shadow: 1rem 1rem 4rem rgba(0,0,0,.2);
     }
     &:active{
         transform: translateY(0rem);
-        box-shadow: 0rem 2rem 6rem rgba(0,0,0,.7);
+        box-shadow: 0rem 0rem 2rem rgba(0,0,0,.4);
+        outline: none;
     }
     &--white{
         background-color: $color-white;
+        &:hover{
+            background-color: $color-primary;
+            color: $color-white;
+        }
+    }
+
+    &--submit{
+        padding: 1rem 5.5rem;
+        border: $border-bottom;
+        border-radius: 0;
         &:hover{
             background-color: $color-primary;
             color: $color-white;

@@ -1,0 +1,20 @@
+.authenticate{
+    padding: 10rem 0;
+
+    .auth{
+        flex: 1;
+        &__title{
+            font-size: 3.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        &__subtitle{
+            font-size: 2rem;
+            font-weight: normal;
+        }
+        &__form{
+            width: 100%;
+            padding: 4rem 0;
+        }
+    }
+}

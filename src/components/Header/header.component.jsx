@@ -9,8 +9,8 @@ class Header extends React.Component{
             <header className="header">
                 <div className="header__text">
                     <ul className="list">
-                        <li className="list__item"><Link to="#1" className="list--link">
-                            My Account
+                        <li className="list__item"><Link to="/signin" className="list--link">
+                            Sign In
                         </Link></li>
                         <li className="list__item"><Link to="#1" className="list--link">
                             About Us
