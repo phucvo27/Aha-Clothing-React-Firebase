@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../../components/Header/header.component';
 import Navbar from '../../components/Navigation/navigation.component';
 import Slider from '../../components/Slider/slider.component';
 import ProductList from '../../components/Products/ProductList.component';
@@ -273,15 +272,13 @@ class Homepage extends React.Component{
     }
 
     render(){
-        
         return (
-            <>
-                <Header />
+            <React.Fragment>
                 <Navbar />
                 <Slider />
 
                 {this.renderSectionHelper()}
-            </>
+            </React.Fragment>
         )
     }
 }
