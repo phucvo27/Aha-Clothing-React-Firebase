@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { auth } from '../../firebase/firebase.utils';
 //import './header.style.scss';
 
 class Header extends React.Component{
@@ -9,9 +10,16 @@ class Header extends React.Component{
             <header className="header">
                 <div className="header__text">
                     <ul className="list">
-                        <li className="list__item"><Link to="/signin" className="list--link">
-                            Sign In
-                        </Link></li>
+                        {
+                            this.props.user 
+                                ?   <li className="list__item"><div onClick={()=> auth.signOut()} className="list--link">
+                                        Sign Out
+                                    </div></li>
+                                :   <li className="list__item"><Link to="/signin" className="list--link">
+                                        Sign In
+                                    </Link></li>
+                                
+                        }
                         <li className="list__item"><Link to="#1" className="list--link">
                             About Us
                         </Link></li>

@@ -14,6 +14,12 @@
     margin-bottom: 1.2rem;
 }
 
+.button-groups{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .effect-hover{
     color: $color-text;
     transition: all .2s;
