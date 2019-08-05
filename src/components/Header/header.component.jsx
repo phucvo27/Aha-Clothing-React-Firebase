@@ -10,6 +10,9 @@ class Header extends React.Component{
             <header className="header">
                 <div className="header__text">
                     <ul className="list">
+                        <li className="list__item"><Link to="/" className="list--link">
+                            Home
+                        </Link></li>
                         {
                             this.props.user 
                                 ?   <li className="list__item"><div onClick={()=> auth.signOut()} className="list--link">

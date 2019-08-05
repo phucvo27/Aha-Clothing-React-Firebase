@@ -1,8 +1,10 @@
 .authenticate{
     padding: 10rem 0;
-
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     .auth{
-        flex: 1;
+        width: 45%;
         &__title{
             font-size: 3.2rem;
             font-weight: bold;

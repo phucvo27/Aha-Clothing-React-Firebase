@@ -3,7 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from '../pages/homepage/homepage.component';
 import SignInAndSignUp from '../pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import Header from '../components/Header/header.component';
-import { auth } from '../firebase/firebase.utils';
+import { auth, createUserProfileDocument } from '../firebase/firebase.utils';
+
 class AppRoute extends React.Component{
     constructor(){
         super();
@@ -14,8 +15,17 @@ class AppRoute extends React.Component{
     unsubcribeFromAuth = null;
 
     componentDidMount(){
-        this.unsubcribeFromAuth = auth.onAuthStateChanged(user => {
-            this.setState(()=>({user}))
+        this.unsubcribeFromAuth = auth.onAuthStateChanged(async user => {
+            
+            if(user){
+                const userRef = await createUserProfileDocument(user);
+
+                userRef.onSnapshot(snapshot => {
+                    this.setState(()=>({user: { id: snapshot.id , ...snapshot.data()}}))
+                })
+            }else{
+                this.setState(()=>({user}))
+            }
         })
     }
 
