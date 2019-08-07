@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebase.utils';
 //import './header.style.scss';
@@ -14,7 +15,7 @@ class Header extends React.Component{
                             Home
                         </Link></li>
                         {
-                            this.props.user 
+                            this.props.currentUser 
                                 ?   <li className="list__item"><div onClick={()=> auth.signOut()} className="list--link">
                                         Sign Out
                                     </div></li>
@@ -41,4 +42,10 @@ class Header extends React.Component{
     }
 }
 
-export default Header;
+const mapStateToProps = state => {
+    return {
+        currentUser: state.user.currentUser
+    }
+}
+
+export default connect(mapStateToProps)(Header);

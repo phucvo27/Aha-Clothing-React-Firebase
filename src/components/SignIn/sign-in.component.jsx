@@ -45,8 +45,7 @@ class SignIn extends React.Component{
                         name='email' 
                         label='Email'
                         value={this.state.email} 
-                        type='email' 
-                        id='email' 
+                        type='email'  
                         required  
                     />
                     
@@ -56,7 +55,6 @@ class SignIn extends React.Component{
                         label='Password'
                         value={this.state.password} 
                         type='password' 
-                        id='password' 
                         required  
                     />
 

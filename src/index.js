@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import './index.scss';
-import './scss/main.scss'
 import AppRoute from './Routers/AppRoute.component';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
-ReactDOM.render(<AppRoute />, document.getElementById('root'));
+import './scss/main.scss';
+ReactDOM.render(
+    <Provider store={store}>
+        <AppRoute />
+    </Provider>
+    , document.getElementById('root'));
 

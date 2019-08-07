@@ -66,7 +66,6 @@ class SignUp extends React.Component{
                         label='Email'
                         value={email} 
                         type='email' 
-                        id='email' 
                         required  
                     />
                     
@@ -76,7 +75,6 @@ class SignUp extends React.Component{
                         label='Password'
                         value={password} 
                         type='password' 
-                        id='password' 
                         required  
                     />
                     <FormInput
@@ -85,7 +83,6 @@ class SignUp extends React.Component{
                         label='Confirm Password'
                         value={confirmPassword} 
                         type='password' 
-                        id='confirmPassword' 
                         required  
                     />
 
