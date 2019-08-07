@@ -29,7 +29,6 @@ class AppRoute extends React.Component{
                     //this.props.setCurrentUser({ id: snapshot.id , ...snapshot.data()})
                 })
             }else{
-                this.setState(()=>({user}))
                 setCurrentUser(user)
             }
         })
