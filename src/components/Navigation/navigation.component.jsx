@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CartIcon from '../Cart-Icon/cart-icon.component'
+import CartIcon from '../Cart-Icon/cart-icon.component';
+import { connect } from 'react-redux';
 //import './navigation.style.scss';
 
 class Navbar extends React.Component{
@@ -22,7 +23,7 @@ class Navbar extends React.Component{
                     <div className="navbar__functionality__cart">
                         <span>Cart </span>
                         <span className="line-skew"></span>
-                        <span id="total">$0.00</span>
+                        <span id="total">${this.props.total}</span>
                         <span>
                             <CartIcon />
                         </span>
@@ -67,4 +68,10 @@ class Navbar extends React.Component{
     }
 }
 
-export default Navbar;
+const mapStateToProps = ({cart: { cartItems}})=>{
+    return {
+        total:  cartItems.reduce((accum, nextItem) => accum += nextItem.quantity * nextItem.price , 0)
+    }
+}
+
+export default connect(mapStateToProps)(Navbar);

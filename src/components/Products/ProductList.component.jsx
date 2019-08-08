@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import Product from './Product.component';
 
 
-const ProductList = ({items , title, isAll})=>{
+const ProductList = ({items, routeName , title, isAll})=>{
     return (
         <section className="section__product">
             <h1 className="heading-primary u-text-center mg-bottom-large">
-                <Link className='effect-hover' to={`/${title.toLowerCase()}`}>{title}</Link>
+                <Link className='effect-hover' to={`/${routeName.toLowerCase()}`}>{title}</Link>
             </h1>
             <div className="products">
                 {

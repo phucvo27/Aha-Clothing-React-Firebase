@@ -1,14 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { addItem } from '../../redux/cart/cart.actions'
 
-
-const Product = ({item})=>{
+const Product = ({item, addItem})=>{
     const { name, price , imageUrl} = item;
     return (
         <div className="product">
             <div className="product__img">
                 <img src={imageUrl} alt="" />
-                <button className="btn btn--white add-to-cart">Add to Cart</button>
+                <button onClick={()=> addItem(item)} className="btn btn--white add-to-cart">Add to Cart</button>
             </div>
             <div className="product__infor">
                 <p className="product__infor--name effect-hover">{name}</p>
@@ -18,8 +19,14 @@ const Product = ({item})=>{
     )
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        addItem : item => dispatch(addItem(item))
+    }
+}
 
-export default withRouter(Product);
+
+export default withRouter(connect(null , mapDispatchToProps)(Product));
 
 /*
 ====== Sale ====
