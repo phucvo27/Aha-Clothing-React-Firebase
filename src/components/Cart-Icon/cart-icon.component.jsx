@@ -4,6 +4,8 @@ import CartDropdown from '../Cart-Dropdown/cart-dropdown.component';
 
 import { connect } from 'react-redux';
 import { toogleCartHidden } from '../../redux/cart/cart.actions';
+import { createStructuredSelector } from 'reselect';
+import { selectCartItemCount } from '../../redux/cart/cart.selector';
 
 const CartIcon = ({toogleCartHidden, numberOfItems})=>{
     return (
@@ -19,11 +21,9 @@ const CartIcon = ({toogleCartHidden, numberOfItems})=>{
     )
 }
 
-const mapStateToProps = ({cart: { cartItems }}) => {
-    return {
-        numberOfItems: cartItems.reduce((accum, nextItem ) => accum += nextItem.quantity , 0)
-    }
-}
+const mapStateToProps = createStructuredSelector({
+    numberOfItems: selectCartItemCount
+})
 const mapDispatchToProps = dispatch =>{
     return {
         toogleCartHidden: ()=> dispatch(toogleCartHidden())

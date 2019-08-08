@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CartIcon from '../Cart-Icon/cart-icon.component';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCartItemTotal } from '../../redux/cart/cart.selector';
 //import './navigation.style.scss';
 
 class Navbar extends React.Component{
@@ -68,10 +70,8 @@ class Navbar extends React.Component{
     }
 }
 
-const mapStateToProps = ({cart: { cartItems}})=>{
-    return {
-        total:  cartItems.reduce((accum, nextItem) => accum += nextItem.quantity * nextItem.price , 0)
-    }
-}
+const mapStateToProps = createStructuredSelector({
+    total: selectCartItemTotal
+})
 
 export default connect(mapStateToProps)(Navbar);
