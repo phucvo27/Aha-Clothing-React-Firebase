@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CartIcon from '../Cart-Icon/cart-icon.component'
 //import './navigation.style.scss';
 
 class Navbar extends React.Component{
@@ -22,7 +23,9 @@ class Navbar extends React.Component{
                         <span>Cart </span>
                         <span className="line-skew"></span>
                         <span id="total">$0.00</span>
-                        <span><i className="fa fa-shopping-cart"></i></span>
+                        <span>
+                            <CartIcon />
+                        </span>
                     </div>
                 </div>
                 <div className="navbar__navigation">

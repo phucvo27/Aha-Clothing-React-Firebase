@@ -39,16 +39,21 @@
             }
         }
         &__cart{
+            height: 4.5rem;
             display: flex;
             justify-content: center;
             align-items: center;
             span{
                 color: $color-text;
                 font-size: 1.6rem;
-                text-transform: uppercase
+                text-transform: uppercase;
+                height: 4.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
             .line-skew{
-                height: 2rem;
+                height: 2.5rem;
                 width: .2rem;
                 background-color: $color-grey-3;
                 display: inline-block;

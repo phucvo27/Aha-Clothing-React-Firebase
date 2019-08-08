@@ -15,11 +15,11 @@
     &:hover{
         color: $color-primary;
         transform: translateY(-.5rem);
-        box-shadow: 1rem 1rem 4rem rgba(0,0,0,.2);
+        box-shadow: 1rem 1rem 4rem rgba(0,0,0,.15);
     }
     &:active{
         transform: translateY(0rem);
-        box-shadow: 0rem 0rem 2rem rgba(0,0,0,.4);
+        box-shadow: 0rem 1rem 2rem rgba(0,0,0,.2);
         outline: none;
     }
     &--white{
