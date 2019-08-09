@@ -1,0 +1,58 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 1.6rem;
+    thead{
+      background-color: $color-black;
+      color: $color-white;
+      
+      td {
+        font-weight: bold;
+        height: 8rem;
+        padding: .8rem;
+      }
+    }
+    tbody{
+      tr{
+        &:nth-child(even){
+          background-color: #f2f2f2;
+        }
+        &:hover{
+          background-color: #ddd;
+        }
+      }
+      td {
+        width: 23%;
+        height: 8rem;
+        padding: .8rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        img{
+            width: 10rem;
+        }
+        span{
+          margin: 0 .5rem;
+        }
+        button {
+          cursor: pointer;
+          border: none;
+          background-color: transparent;
+          font-size: 1.3rem;
+        }
+        
+        &:last-child{
+          text-align: center;
+          width: 8%;
+          
+        }
+
+      }
+      #empty-item{
+          background-color: transparent;
+          &:hover{
+              background-color: none;
+          }
+      }
+    }
+    
+  }

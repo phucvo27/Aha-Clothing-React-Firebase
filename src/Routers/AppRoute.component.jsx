@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import HomePage from '../pages/homepage/homepage.component';
+import CheckOutPage from '../pages/checkout-page/checkout.component'
 import SignInAndSignUp from '../pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import Header from '../components/Header/header.component';
 import { auth, createUserProfileDocument } from '../firebase/firebase.utils';
@@ -46,6 +47,7 @@ class AppRoute extends React.Component{
                 <Switch>
                     <Route exact path='/' component={HomePage} />
                     <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to="/" />) : (<SignInAndSignUp />)} />
+                    <Route exact path='/checkout' component={CheckOutPage} />
                 </Switch>
             
             </BrowserRouter>
