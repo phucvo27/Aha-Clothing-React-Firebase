@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import HomePage from '../pages/homepage/homepage.component';
 import CheckOutPage from '../pages/checkout-page/checkout.component'
 import SignInAndSignUp from '../pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import CategoryPage from '../pages/category/category.component';
 import Header from '../components/Header/header.component';
 import { auth, createUserProfileDocument } from '../firebase/firebase.utils';
 import { setCurrentUser } from '../redux/user/user.actions';
@@ -48,6 +49,7 @@ class AppRoute extends React.Component{
                     <Route exact path='/' component={HomePage} />
                     <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to="/" />) : (<SignInAndSignUp />)} />
                     <Route exact path='/checkout' component={CheckOutPage} />
+                    <Route path='/:collection' component={CategoryPage} />
                 </Switch>
             
             </BrowserRouter>

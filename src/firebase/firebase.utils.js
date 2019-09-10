@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-
+//import { collections } from '../pages/homepage/shop-data-dev'
 const config = {
     apiKey: "AIzaSyDp95wp8XfHtnY6-tvyFP03xmiYZlBP9mc",
     authDomain: "aha-clothing.firebaseapp.com",
@@ -47,7 +47,43 @@ export const createUserProfileDocument = async (userAuth, additionalData = {}) =
   return userRef;
 }
 
+// Add collections and items to firestore
+export const addCollectionAndItems = async (collectionKey, objectToAdd)=>{
+  const collectionRef = firestore.collection(collectionKey);
+  const batch = firestore.batch();
+  objectToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc(); // let firestore generate the id for us
+    batch.set(newDocRef, obj)
+  })
+  return await batch.commit()
+}
 
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data();
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+    }
+  })
+  console.log(transformedCollection);
+  return transformedCollection.reduce((accumulator, collection)=>{
+            accumulator[collection.title.toLowerCase()] = collection;
+            return accumulator;
+          } , {})
+}
+// async function addToFirebse(){
+//   console.log()
+//   try{
+//     await addCollectionAndItems('collections', collections.map(({title, items}) => ({title, items})))
+//     console.log('Added success')
+//   }catch(e){
+//     console.log('Something wrong')
+//   }
+// }
+//addToFirebse()
 // Create provider
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
