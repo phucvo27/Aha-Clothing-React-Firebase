@@ -33,7 +33,7 @@ class Navbar extends React.Component{
                 </div>
                 <div className="navbar__navigation">
                     <ul className="navigation">
-                        <li className="navigation__item"><Link to="#1" className="navigation--link">
+                        <li className="navigation__item"><Link to="/" className="navigation--link">
                             Home
                         </Link></li>
                         
@@ -44,11 +44,11 @@ class Navbar extends React.Component{
                             </span>
 
                             <ul className="dropdown">
-                                <li><Link to="#1" className="navigation--link">Men</Link></li>
-                                <li><Link to="#1" className="navigation--link">Women</Link></li>
-                                <li><Link to="#1" className="navigation--link">Jacket</Link></li>
-                                <li><Link to="#1" className="navigation--link">Hat</Link></li>
-                                <li><Link to="#1" className="navigation--link">Sneaker</Link></li>
+                                <li><Link to="/mens" className="navigation--link">Men</Link></li>
+                                <li><Link to="/womens" className="navigation--link">Women</Link></li>
+                                <li><Link to="/jackets" className="navigation--link">Jacket</Link></li>
+                                <li><Link to="/hats" className="navigation--link">Hat</Link></li>
+                                <li><Link to="/sneakers" className="navigation--link">Sneaker</Link></li>
                             </ul>
                         </li>
                         <li className="navigation__item">
