@@ -6,8 +6,10 @@ import CheckOutPage from '../pages/checkout-page/checkout.component'
 import SignInAndSignUp from '../pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CategoryPage from '../pages/category/category.component';
 import Header from '../components/Header/header.component';
+import ScrollToTop from '../components/Scroll-To-Top/ScrollToTop.component'
 import { auth, createUserProfileDocument } from '../firebase/firebase.utils';
 import { setCurrentUser } from '../redux/user/user.actions';
+
 
 class AppRoute extends React.Component{
     constructor(){
@@ -44,14 +46,15 @@ class AppRoute extends React.Component{
     render(){
          return (
             <BrowserRouter>
-                <Header/>
-                <Switch>
-                    <Route exact path='/' component={HomePage} />
-                    <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to="/" />) : (<SignInAndSignUp />)} />
-                    <Route exact path='/checkout' component={CheckOutPage} />
-                    <Route path='/:collection' component={CategoryPage} />
-                </Switch>
-            
+                <ScrollToTop>
+                    <Header/>
+                    <Switch>
+                        <Route exact path='/' component={HomePage} />
+                        <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to="/" />) : (<SignInAndSignUp />)} />
+                        <Route exact path='/checkout' component={CheckOutPage} />
+                        <Route path='/:collection' component={CategoryPage} />
+                    </Switch>
+                </ScrollToTop>
             </BrowserRouter>
         )
     }
