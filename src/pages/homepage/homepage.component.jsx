@@ -1,31 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateCollections } from '../../redux/shop/shop.actions';
 import { createStructuredSelector } from 'reselect';
-import { selectCollections } from '../../redux/shop/shop.selector'
-import Navbar from '../../components/Navigation/navigation.component';
+import { selectSelectionForPreview } from '../../redux/shop/shop.selector'
 import Slider from '../../components/Slider/slider.component';
 import ProductList from '../../components/Products/ProductList.component';
-import { firestore, convertCollectionsSnapshotToMap} from '../../firebase/firebase.utils';
+
 
 class Homepage extends React.Component{
-    
-    componentDidMount(){
-        const collectionRef = firestore.collection('collections');
 
-        // Get Snapshot
-        collectionRef.onSnapshot(async snapShot => {
-            const collectionsMap = convertCollectionsSnapshotToMap(snapShot);
-            this.props.updateCollection(collectionsMap)
-        })
-    }
+
     renderSectionHelper = ()=>{
         const { collections } = this.props;
-        if(collections){
-            return Object.keys(collections).map((collection, index)=>{
-                const { routeName, title, items } = collections[collection];
+        if(collections.length > 0){
+            return collections.map((collection, index)=>{
                 return (
-                    <ProductList isAll={false} routeName={routeName} items={items} key={index} title={title} />
+                    <ProductList isAll={false} key={index} {...collection}/>
                 )
             })
         }else{
@@ -36,9 +25,7 @@ class Homepage extends React.Component{
     render(){
         return (
             <React.Fragment>
-                <Navbar />
                 <Slider />
-
                 {this.renderSectionHelper()}
             </React.Fragment>
         )
@@ -46,12 +33,7 @@ class Homepage extends React.Component{
 }
 
 const mapStateToProps = createStructuredSelector({
-    collections : selectCollections
+    collections : selectSelectionForPreview
 })
 
-const mapDispatchToProps = dispatch => {
-    return {
-        updateCollection: collectionsMap => dispatch(updateCollections(collectionsMap))
-    }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(Homepage);
+export default connect(mapStateToProps)(Homepage);

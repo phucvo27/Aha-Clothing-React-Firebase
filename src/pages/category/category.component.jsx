@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { selectCollection } from '../../redux/shop/shop.selector';
 import ProductList from '../../components/Products/ProductList.component';
-import Navbar from '../../components/Navigation/navigation.component'
 
 const CategoryPage = ({collection})=>{
     return (
         <React.Fragment>
-            <Navbar />
-            <ProductList {...collection} isAll={true} />
+            
+            {
+                collection ? <ProductList {...collection} isAll={true} /> : <p>Loading text</p>
+            }
         </React.Fragment>
     )
 }
