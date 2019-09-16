@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import HomePage from '../pages/homepage/homepage.component';
 import CheckOutPage from '../pages/checkout-page/checkout.component'
 import SignInAndSignUp from '../pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
@@ -8,9 +9,11 @@ import CategoryPage from '../pages/category/category.component';
 import Header from '../components/Header/header.component';
 import Navbar from '../components/Navigation/navigation.component';
 import ScrollToTop from '../components/Scroll-To-Top/ScrollToTop.component'
-import { auth, createUserProfileDocument, firestore, convertCollectionsSnapshotToMap } from '../firebase/firebase.utils';
+import { auth, createUserProfileDocument } from '../firebase/firebase.utils';
 import { setCurrentUser } from '../redux/user/user.actions';
-import { updateCollections } from '../redux/shop/shop.actions';
+import { selectCurrentUser } from '../redux/user/user.selector';
+import { fetchCollectionsStartAsync } from '../redux/shop/shop.actions';
+import { selectIsCollectionsFetching } from '../redux/shop/shop.selector';
 import WithSpinner from '../components/With-Spinner/With-Spinner.component';
 
 const HomePageWithSpinner = WithSpinner(HomePage);
@@ -26,10 +29,9 @@ class AppRoute extends React.Component{
         }
     }
     unsubcribeFromAuth = null;
-    unsubcribeFromSnapshot = null;
 
     componentDidMount(){
-        const { setCurrentUser, updateCollection } = this.props;
+        const { setCurrentUser, fetchCollectionsStartAsync } = this.props;
         this.unsubcribeFromAuth = auth.onAuthStateChanged(async user => {
             
             if(user){
@@ -44,34 +46,27 @@ class AppRoute extends React.Component{
                 setCurrentUser(user)
             }
         })
-        const collectionRef = firestore.collection('collections');
-
-        // Get Snapshot
-        this.unsubcribeFromSnapshot = collectionRef.onSnapshot(async snapShot => {
-            const collectionsMap = convertCollectionsSnapshotToMap(snapShot);
-            updateCollection(collectionsMap);
-            this.setState(()=>({isLoading: false}))
-        })
+        fetchCollectionsStartAsync();
+        
     }
 
     componentWillUnmount(){
         this.unsubcribeFromAuth();
-        this.unsubcribeFromSnapshot();
     }
 
 
     render(){
-        const { isLoading } = this.state;
+        const { isCollectionsFetching } = this.props;
          return (
             <BrowserRouter>
                 <ScrollToTop>
                     <Header/>
                     <Navbar />
                     <Switch>
-                        <Route exact path='/' render={(props)=>( <HomePageWithSpinner isLoading={isLoading} {...props} />)}/>
+                        <Route exact path='/' render={(props)=>( <HomePageWithSpinner isLoading={isCollectionsFetching} {...props} />)}/>
                         <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to="/" />) : (<SignInAndSignUp />)} />
                         <Route exact path='/checkout' component={CheckOutPage} />
-                        <Route path='/:collection' render={(props)=>( <CategoryPageWithSpinner isLoading={isLoading}  {...props}/>)} />
+                        <Route path='/:collection' render={(props)=>( <CategoryPageWithSpinner isLoading={isCollectionsFetching}  {...props}/>)} />
                     </Switch>
                 </ScrollToTop>
             </BrowserRouter>
@@ -79,16 +74,16 @@ class AppRoute extends React.Component{
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        currentUser : state.user.currentUser
-    }
-}
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    isCollectionsFetching: selectIsCollectionsFetching
+    
+})
 
 const mapDispatchToProps = dispatch => {
     return {
         setCurrentUser: user => dispatch(setCurrentUser(user)),
-        updateCollection: collectionsMap => dispatch(updateCollections(collectionsMap))
+        fetchCollectionsStartAsync : () => dispatch(fetchCollectionsStartAsync())
     }
 }
 

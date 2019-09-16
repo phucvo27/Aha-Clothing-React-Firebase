@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../../components/Navigation/navigation.component'
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCartItems, selectCartItemTotal } from '../../redux/cart/cart.selector';
@@ -10,7 +9,6 @@ class CheckOut extends React.Component{
     render(){
         return (
             <React.Fragment>
-                <Navbar />
                 <h2 className='heading-primary u-text-center' style={{margin: '4rem 0'}}>Check Out</h2>
                 
                 <table className='mg-bottom-medium'>

@@ -6,9 +6,8 @@ import ProductList from '../../components/Products/ProductList.component';
 const CategoryPage = ({collection})=>{
     return (
         <React.Fragment>
-            
             {
-                collection ? <ProductList {...collection} isAll={true} /> : <p>Loading text</p>
+                collection && <ProductList {...collection} isAll={true} />
             }
         </React.Fragment>
     )
